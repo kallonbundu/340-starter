@@ -2,33 +2,72 @@
 *,
 *:before,
 *:after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 /******* General Styles ***************/
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background-color: #f9f9f9;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-h1 {
-  margin: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
 }
 
 main {
-  padding: 1rem;
+    padding: 1rem;
 }
 
-/******* Header Section ***************/
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #007BFF;
+}
+
+.hero .cta {
+    position: absolute;
+    top: 50%; /* Centers vertically */
+    left: 50%; /* Centers horizontally */
+    transform: translate(-50%, -50%); /* Corrects centering offset */
+    background-color: rgba(251, 249, 249, 0.6);
+    padding: 20px; /* Adds spacing inside the call-to-action */
+    border-radius: 8px;
+    text-align: center;
+}
+
+.hero .cta p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #25a7fd;
+}
+
+.hero .cta a img {
+    max-width: 150px;
+    height: auto;
+    display: inline-block;
+}
+
+.hero img {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 1200px;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Header Section ***************/
 header {
   background-color: #000;
   color: #fff;
@@ -101,52 +140,50 @@ nav ul li:hover {
 
 /******* Hero Section ***************/
 .hero {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  background-color: #f4f4f4;
+    position: relative; /* Allows positioning of child elements */
+    text-align:left; 
+    top: 0px;/* Centers text horizontally */
+    padding: 20px; /* Adds spacing inside the section */
+    background-color: #f4f4f4; /* Optional: Adds a light background */
 }
 
-.hero h1 {
-  width: 100%;
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
+
 
 .hero .cta {
-  flex: 1;
-  max-width: 40%;
-  text-align: left;
+    position: absolute;
+    top: 50%; /* Centers vertically */
+    left: 20%; /* Centers horizontally */
+    transform: translate(-50%, -50%); /* Corrects centering offset */
+    background-color: rgba(251, 249, 249, 0.6);
+    padding: 20px; /* Adds spacing inside the call-to-action */
+    border-radius: 8px;
+    text-align: center;
 }
 
 .hero .cta p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
+    font-size: 1.2rem; /* Adjusts font size */
+    margin-bottom: 10px; /* Adds spacing below the text */
+    color: #25a7fd; /* Ensures text is readable on dark background */
 }
 
-/* Style for buttons and links with blue background */
-.hero .cta .cta-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #0056b3; /* Darker blue for better contrast */
-    color: #FFFFFF; /* White text */
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1rem;
+.hero .cta a img {
+    max-width: 150px; /* Sets a maximum width for the image */
+    height: auto; /* Maintains the aspect ratio */
+    display: inline-block; /* Ensures the image is treated as inline content */
 }
 
-.hero .cta .cta-button:hover {
-    background-color: #003f7f; /* Even darker blue for hover effect */
+.hero h1 {
+    font-size: 2.5rem; /* Adjusts font size for the heading */
+    margin-top: 100px; /* Adds spacing above the heading */
 }
 
 .hero img {
-  flex: 1;
-  max-width: 50%;
-  height: auto;
-  border-radius: 8px;
+    display: block; /* Makes the image a block element */
+    margin: 0 auto; /* Centers the image horizontally */
+    width: 50%; /* Makes the image responsive to fit the screen */
+    max-width: 800px; /* Sets a maximum width for larger screens */
+    height: auto; /* Maintains the aspect ratio */
+    border-radius: 8px; /* Optional: Adds rounded corners */
 }
 
 /* Footer Section */
@@ -170,10 +207,10 @@ footer {
 .upgrades, .reviews {
     flex: 1;
     max-width: 48%; /* Ensures both sections take up equal space on larger screens */
-    background-color: #f9f9f9;
+    background-color: #fff; /* White background for better readability */
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Adds rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
 }
 
 .upgrades h2, .reviews h2 {
@@ -182,29 +219,35 @@ footer {
     margin-bottom: 20px;
 }
 
-/* Upgrades section styles */
+/* Upgrades Section */
+.upgrades {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Centers content horizontally */
+    justify-content: center; /* Centers content vertically */
+    padding: 20px;
+    background-color: #fff; /* White background for better readability */
+    border-radius: 8px; /* Adds rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+.upgrades h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
 .upgrade-items {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Ensures wrapping on smaller screens */
     gap: 10px;
-    justify-content: center;
+    justify-content: center; /* Centers items horizontally */
 }
 
 .upgrade-items article {
     text-align: center;
-    width: 45%;
+    width: 45%; /* Keeps consistent width across all screens */
     margin: 10px;
-}
-
-/* Style for links */
-.upgrade-items article a {
-    text-decoration: underline; /* Always underlined */
-    color: #0056b3; /* Darker blue for better contrast */
-    font-weight: bold; /* Optional: Makes the text bold */
-}
-
-.upgrade-items article a:hover {
-    color: #003f7f; /* Even darker blue for hover effect */
 }
 
 .upgrade-items img {
@@ -228,6 +271,32 @@ footer {
 .reviews li {
     margin: 10px 0; /* Adds spacing between list items */
     font-size: 1rem; /* Ensures consistent font size */
+}
+
+/* Call-to-action section styles */
+.cta {
+    background-color: #e6f2ff; /* Light blue background */
+    text-align: center; /* Centers the content */
+    display: inline-block; /* Makes the background fit the content */
+    padding: 0; /* Fixed padding value */
+    border: none; /* Removes the border */
+    border-radius: 1px; /* Optional: Rounds the corners */
+    display: flex;
+    flex-direction: column; /* Stack text and button vertically */
+    align-items: center; /* Centers content horizontally */
+    margin-top: 20px; /* Adds spacing above the call-to-action */
+}
+
+.cta p {
+    font-size: 1.2rem; /* Adjusts font size */
+    color: #333; /* Ensures text is readable */
+    margin-bottom: 10px; /* Adds spacing below the text */
+}
+
+.cta a img {
+    max-width: 150px; /* Sets a maximum width for the image */
+    height: auto; /* Maintains the aspect ratio */
+    margin-top: 10px; /* Adds spacing above the button image */
 }
 
 /* Responsive adjustments */
@@ -264,16 +333,12 @@ footer {
     }
 
     .upgrades-reviews-container {
-        flex-direction: column; /* Stack sections vertically */
+        flex-direction: column; /* Stacks sections vertically */
     }
 
-    .reviews {
-        order: -1; /* Moves the reviews section to the top */
-        max-width: 100%; /* Full width on small screens */
+    .upgrades, .reviews {
+        max-width: 100%; /* Full width on smaller screens */
     }
-
-    .upgrades {
-        max-width: 100%; /* Full
 
     .upgrade-items article {
         width: 100%; /* Adjusts upgrade items to fit full width */
@@ -299,27 +364,18 @@ footer {
     }
 
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2.5rem; /* Larger font size for bigger screens */
     }
 
-    .hero p {
-        font-size: 1.2rem;
-    }
-
-    footer {
-        font-size: 1rem;
+    .hero img {
+        width: 80%; /* Adjusts image width for larger screens */
     }
 
     .upgrades-reviews-container {
-        flex-direction: row; /* Align sections side by side */
+        flex-direction: row; /* Aligns sections side by side */
     }
 
-    .reviews {
-        order: 0; /* Default order for larger screens */
-        max-width: 48%; /* Side-by-side layout */
-    }
-
-    .upgrades {
+    .upgrades, .reviews {
         max-width: 48%; /* Side-by-side layout */
     }
 }
