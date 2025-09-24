@@ -16,6 +16,8 @@ const utilities = require('./utilities/index')
 const session = require("express-session")
 const pool = require('./database/')
 
+// server.js
+app.use(express.static("public"))
 
 /* ***********************
  * View Engine And Templates
@@ -94,13 +96,12 @@ app.use(async (err, req, res, next) => {
  * Local Server Information
  * Values from .env (environment) file
  *************************/
-
-const port = process.env.PORT || 5500
-const host = process.env.HOST || 'localhost'
+const port = process.env.PORT
+const host = process.env.HOST
 
 /* ***********************
  * Log statement to confirm server operation
  *************************/
 app.listen(port, () => {
-  console.log(`app listening on port ${port}`)
+  console.log(`app listening on ${host}:${port}`)
 })
