@@ -12,9 +12,11 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
+const accountRoute = require("./routes/accountRoute")
 const utilities = require('./utilities/index')
 const session = require("express-session")
 const pool = require('./database/')
+const bodyParser = require("body-parser")
 
 // server.js
 app.use(express.static("public"))
@@ -44,6 +46,11 @@ app.use(session({
   name: 'sessionId',
 }))
 
+
+// Body Parser Middleware
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
 // Express Messages Middleware
 app.use(require('connect-flash')())
 app.use(function(req, res, next){
@@ -59,8 +66,12 @@ app.use(static)
 //Index Route
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
+
 // Inventory routes
 app.use("/inv", inventoryRoute)
+
+// Account routes
+app.use("/account", accountRoute)
 
 
 

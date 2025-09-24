@@ -1,3 +1,145 @@
+#region Password Requirements
+.password-requirements {
+  font-size: 0.98rem;
+  color: #017c8c;
+  background: #e0f7fa;
+  border-left: 4px solid #01b0d3;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.7rem;
+  border-radius: 4px;
+  margin-top: -0.3rem;
+}
+#endregion
+
+
+/* Center the login form on the page */
+.login-form-center-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #e0f7fa 0%, #f4fbfd 100%);
+  padding: 2vw;
+}
+.login-form {
+  width: 100%;
+  max-width: 28rem;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 2rem 2rem;
+  background: #f4fbfd;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(1,176,211,0.10), 0 1.5px 6px rgba(36,35,51,0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fadeIn 0.7s cubic-bezier(.4,0,.2,1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .login-form {
+    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(1,176,211,0.10);
+    gap: 1rem;
+  }
+  .login-form-center-wrapper {
+    padding: 0.5rem;
+  }
+}
+
+.login-form label {
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: #0190b3;
+  letter-spacing: 0.5px;
+  font-size: 1.08rem;
+}
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  padding: 0.85rem 1rem;
+  border: 1.5px solid #b2e6f3;
+  border-radius: 6px;
+  font-size: 1.08rem;
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  margin-bottom: 0.5rem;
+}
+.login-form input[type="email"]:focus,
+.login-form input[type="password"]:focus {
+  border-color: #01b0d3;
+  box-shadow: 0 0 0 2px #b2e6f3;
+}
+.login-form button {
+  background: linear-gradient(90deg, #01b0d3 60%, #0190b3 100%);
+  color: #fff;
+  border: none;
+  padding: 0.95rem;
+  border-radius: 6px;
+  font-size: 1.13rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(1,176,211,0.08);
+  letter-spacing: 0.5px;
+}
+.login-form button:hover {
+  background: #017c8c;
+  box-shadow: 0 4px 16px rgba(1,176,211,0.13);
+  transform: translateY(-1px) scale(1.01);
+}
+.login-form input[type="email"]::-webkit-input-placeholder,
+.login-form input[type="password"]::-webkit-input-placeholder {
+  color: #b0b0b0;
+  font-size: 0.98rem;
+}
+.login-form input[type="email"]::placeholder,
+.login-form input[type="password"]::placeholder {
+  color: #b0b0b0;
+  font-size: 0.98rem;
+}
+.login-form input[type="email"]:disabled,
+.login-form input[type="password"]:disabled {
+  background: #f0f0f0;
+  color: #aaa;
+}
+.login-form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.1rem;
+}
+.login-form .form-icon {
+  margin-right: 0.5rem;
+  color: #01b0d3;
+  font-size: 1.2rem;
+  vertical-align: middle;
+}
+.flash-message {
+  background: var(--warning-background);
+  color: var(--primary-text);
+  border-left: 4px solid var(--notification);
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 25rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.register-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+}
+.register-link a {
+  color: var(--main-accent);
+  text-decoration: underline;
+  font-weight: 600;
+}
+#endregion
 /************************************************
 CSS Styles for CSE Motors
 
@@ -26,7 +168,7 @@ CSS Styles for CSE Motors
     3.7 Vehicle - Detail view
 
 ************************************************/
-@import url('https://fonts.googleapis.com/css2?family=Inter&family=Literata:opsz@7..72&display=swap');
+
 
 /******* 1.1 Change Box Model ***************/
 /*#region*/
