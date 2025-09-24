@@ -1,0 +1,79 @@
+-- =============================
+-- SEDAN (8+ vehicles)
+-- =============================
+INSERT INTO inventory
+(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
+VALUES
+('Toyota', 'Camry', 2023, 'Reliable family sedan with excellent fuel economy', '/images/vehicles/camaro.jpg', '/images/vehicles/camaro-tn.jpg', 28000, 12000, 'White', 1),
+('Honda', 'Accord', 2023, 'Comfortable mid-size sedan with advanced safety', '/images/vehicles/crm-vic.jpg', '/images/vehicles/crm-vic-tn.jpg', 27500, 10000, 'Black', 1),
+('Ford', 'Model T', 2023, 'Classic sedan reimagined for modern roads', '/images/vehicles/model-t.jpg', '/images/vehicles/model-t-tn.jpg', 32000, 8000, 'Blue', 1),
+('Survan', 'Deluxe', 2023, 'Spacious sedan with versatile interior', '/images/vehicles/survan.jpg', '/images/vehicles/survan-tn.jpg', 26500, 15000, 'Silver', 1),
+('Nissan', 'Altima', 2023, 'Efficient sedan with premium comfort features', '/images/vehicles/camaro.jpg', '/images/vehicles/camaro-tn.jpg', 25500, 14000, 'Gray', 1),
+('Hyundai', 'Sonata', 2023, 'Stylish sedan with comprehensive warranty', '/images/vehicles/crm-vic.jpg', '/images/vehicles/crm-vic-tn.jpg', 26000, 11000, 'Red', 1),
+('Kia', 'Optima', 2023, 'Value-packed sedan with modern technology', '/images/vehicles/model-t.jpg', '/images/vehicles/model-t-tn.jpg', 24500, 13000, 'Blue', 1),
+('Mazda', 'Mazda6', 2023, 'Sporty sedan with premium interior quality', '/images/vehicles/survan.jpg', '/images/vehicles/survan-tn.jpg', 29000, 9000, 'Black', 1),
+('Subaru', 'Legacy', 2023, 'All-wheel drive sedan for all weather conditions', '/images/vehicles/camaro.jpg', '/images/vehicles/camaro-tn.jpg', 29500, 8500, 'Green', 1);
+
+-- =============================
+-- SPORT (8+ vehicles)
+-- =============================
+INSERT INTO inventory
+(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
+VALUES
+('Lamborghini', 'Aventador', 2023, 'Exotic supercar with breathtaking performance', '/images/vehicles/adventador.jpg', '/images/vehicles/adventador-tn.jpg', 450000, 1000, 'Orange', 2),
+('AeroCar', 'Futuristic', 2023, 'Advanced sports car with aerodynamic design', '/images/vehicles/aerocar.jpg', '/images/vehicles/aerocar-tn.jpg', 150000, 2500, 'Silver', 2),
+('DeLorean', 'DMC-12', 2023, 'Iconic sports car with gull-wing doors', '/images/vehicles/delorean.jpg', '/images/vehicles/delorean-tn.jpg', 85000, 5000, 'Stainless Steel', 2),
+('Chevrolet', 'Camaro', 2023, 'American muscle car with powerful V8 engine', '/images/vehicles/camaro.jpg', '/images/vehicles/camaro-tn.jpg', 42000, 8000, 'Yellow', 2),
+('Ford', 'Mustang', 2023, 'Legendary sports car with aggressive styling', '/images/vehicles/aerocar.jpg', '/images/vehicles/aerocar-tn.jpg', 38000, 12000, 'Red', 2),
+('Dodge', 'Challenger', 2023, 'Modern muscle car with retro influences', '/images/vehicles/delorean.jpg', '/images/vehicles/delorean-tn.jpg', 45000, 7000, 'Blue', 2),
+('Porsche', '911', 2023, 'Precision German sports car with heritage', '/images/vehicles/adventador.jpg', '/images/vehicles/adventador-tn.jpg', 125000, 3000, 'Black', 2),
+('Audi', 'R8', 2023, 'Luxury supercar with Quattro all-wheel drive', '/images/vehicles/aerocar.jpg', '/images/vehicles/aerocar-tn.jpg', 145000, 4000, 'White', 2),
+('Nissan', 'GT-R', 2023, 'Japanese supercar with incredible performance', '/images/vehicles/camaro.jpg', '/images/vehicles/camaro-tn.jpg', 115000, 6000, 'Gray', 2);
+
+-- =============================
+-- SUV (8+ vehicles)
+-- =============================
+INSERT INTO inventory
+(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
+VALUES
+('Cadillac', 'Escalade', 2023, 'Full-size luxury SUV with premium features', '/images/vehicles/escalade.jpg', '/images/vehicles/escalade-tn.jpg', 85000, 8000, 'Black', 3),
+('Hummer', 'H2', 2023, 'Bold SUV with commanding road presence', '/images/vehicles/hummer.jpg', '/images/vehicles/hummer-tn.jpg', 75000, 12000, 'Yellow', 3),
+('Jeep', 'Wrangler', 2023, 'Iconic off-road SUV with open-air freedom', '/images/vehicles/wrangler.jpg', '/images/vehicles/wrangler-tn.jpg', 42000, 15000, 'Red', 3),
+('Dog', 'Mobile', 2023, 'Pet-friendly SUV with special accommodations', '/images/vehicles/dog-car.jpg', '/images/vehicles/dog-car-tn.jpg', 38000, 10000, 'Brown', 3),
+('Toyota', '4Runner', 2023, 'Durable SUV built for adventure and reliability', '/images/vehicles/escalade.jpg', '/images/vehicles/escalade-tn.jpg', 45000, 18000, 'Gray', 3),
+('Ford', 'Explorer', 2023, 'Family-friendly SUV with advanced technology', '/images/vehicles/hummer.jpg', '/images/vehicles/hummer-tn.jpg', 42000, 14000, 'Blue', 3),
+('Chevrolet', 'Tahoe', 2023, 'Spacious SUV with powerful towing capacity', '/images/vehicles/wrangler.jpg', '/images/vehicles/wrangler-tn.jpg', 55000, 9000, 'White', 3),
+('Honda', 'Pilot', 2023, 'Versatile SUV with three rows of seating', '/images/vehicles/dog-car.jpg', '/images/vehicles/dog-car-tn.jpg', 39000, 16000, 'Silver', 3),
+('Subaru', 'Outback', 2023, 'Adventure-ready SUV with all-wheel drive', '/images/vehicles/escalade.jpg', '/images/vehicles/escalade-tn.jpg', 35000, 13000, 'Green', 3);
+
+-- =============================
+-- TRUCK (8+ vehicles)
+-- =============================
+INSERT INTO inventory
+(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
+VALUES
+('Fire Department', 'Truck', 2023, 'Professional emergency response vehicle', '/images/vehicles/fire-truck.jpg', '/images/vehicles/fire-truck-tn.jpg', 250000, 3000, 'Red', 4),
+('Monster Truck', 'Big Foot', 2023, 'Massive truck with oversized tires for shows', '/images/vehicles/monster-truck.jpg', '/images/vehicles/monster-truck-tn.jpg', 120000, 2000, 'Blue', 4),
+('Ford', 'F-150', 2023, 'Best-selling pickup with powerful capabilities', '/images/vehicles/fire-truck.jpg', '/images/vehicles/fire-truck-tn.jpg', 45000, 15000, 'Black', 4),
+('Chevrolet', 'Silverado', 2023, 'Reliable work truck with advanced features', '/images/vehicles/monster-truck.jpg', '/images/vehicles/monster-truck-tn.jpg', 48000, 12000, 'White', 4),
+('Ram', '1500', 2023, 'Luxury truck with premium interior comforts', '/images/vehicles/fire-truck.jpg', '/images/vehicles/fire-truck-tn.jpg', 52000, 10000, 'Gray', 4),
+('Toyota', 'Tacoma', 2023, 'Mid-size truck known for durability and reliability', '/images/vehicles/monster-truck.jpg', '/images/vehicles/monster-truck-tn.jpg', 38000, 18000, 'Green', 4),
+('GMC', 'Sierra', 2023, 'Premium truck with professional-grade features', '/images/vehicles/fire-truck.jpg', '/images/vehicles/fire-truck-tn.jpg', 55000, 8000, 'Red', 4),
+('Nissan', 'Titan', 2023, 'Full-size truck with powerful V8 engine', '/images/vehicles/monster-truck.jpg', '/images/vehicles/monster-truck-tn.jpg', 47000, 14000, 'Blue', 4),
+('Ford', 'Ranger', 2023, 'Compact truck with impressive fuel economy', '/images/vehicles/fire-truck.jpg', '/images/vehicles/fire-truck-tn.jpg', 35000, 16000, 'Orange', 4);
+
+-- =============================
+-- CUSTOM (8+ vehicles)
+-- =============================
+INSERT INTO inventory
+(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
+VALUES
+('Batmobile', 'Special Edition', 2023, 'One-of-a-kind crime-fighting vehicle', '/images/vehicles/batmobile.jpg', '/images/vehicles/batmobile-tn.jpg', 250000, 500, 'Black', 5),
+('Mystery Machine', 'Van', 2023, 'Custom van for solving mysteries', '/images/vehicles/mystery-van.jpg', '/images/vehicles/mystery-van-tn.jpg', 45000, 15000, 'Green', 5),
+('DeLorean', 'Time Machine', 2023, 'Custom sports car with flux capacitor', '/images/vehicles/delorean.jpg', '/images/vehicles/delorean-tn.jpg', 95000, 3000, 'Stainless Steel', 5),
+('AeroCar', 'Concept', 2023, 'Futuristic custom vehicle prototype', '/images/vehicles/aerocar.jpg', '/images/vehicles/aerocar-tn.jpg', 180000, 1500, 'Silver', 5),
+('Dog', 'Custom Mobile', 2023, 'Uniquely modified vehicle for pet lovers', '/images/vehicles/dog-car.jpg', '/images/vehicles/dog-car-tn.jpg', 55000, 8000, 'Brown', 5),
+('Monster Truck', 'Gravedigger', 2023, 'Custom built monster truck for entertainment', '/images/vehicles/monster-truck.jpg', '/images/vehicles/monster-truck-tn.jpg', 150000, 1000, 'Black', 5),
+('Lamborghini', 'Custom Aventador', 2023, 'Bespoke supercar with personal touches', '/images/vehicles/adventador.jpg', '/images/vehicles/adventador-tn.jpg', 500000, 800, 'Purple', 5),
+('Hot Rod', 'Classic', 2023, 'Custom built hot rod with vintage style', '/images/vehicles/model-t.jpg', '/images/vehicles/model-t-tn.jpg', 75000, 5000, 'Red', 5),
+('Survan', 'Custom', 2023, 'Personally modified van for unique needs', '/images/vehicles/survan.jpg', '/images/vehicles/survan-tn.jpg', 42000, 12000, 'Yellow', 5);

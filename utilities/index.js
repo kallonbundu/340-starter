@@ -89,90 +89,32 @@ Util.getNav = async function (req, res, next) {
 
 
 Util.buildClassificationGrid = async function(data){
-
-
-    let grid
-
-
-    if(data.length > 0){
-
-
-      grid = '<ul id="inv-display">'
-
-
-      data.forEach(vehicle => { 
-
-
-        grid += '<li>'
-
-
-        grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
-
-
-        + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-
-
-        + 'details"><img src="' + vehicle.inv_thumbnail 
-
-
-        +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
-
-
-        +' on CSE Motors" /></a>'
-
-
-        grid += '<div class="namePrice">'
-
-
-        grid += '<hr />'
-
-
-        grid += '<h2>'
-
-
-        grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
-
-
-        + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
-
-
-        + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
-
-
-        grid += '</h2>'
-
-
-        grid += '<span>$' 
-
-
-        + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
-
-
-        grid += '</div>'
-
-
-        grid += '</li>'
-
-
-      })
-
-
-      grid += '</ul>'
-
-
-    } else { 
-
-
-      grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
-
-
+    let grid = "";
+    if(Array.isArray(data) && data.length > 0){
+      grid = '<ul id="inv-display">';
+      data.forEach(vehicle => {
+        // Use absolute path for images
+        let thumb = vehicle.inv_thumbnail;
+        if (thumb && !thumb.startsWith("/")) {
+          thumb = "/" + thumb;
+        }
+        grid += '<li>';
+        grid +=  '<a href="/inv/detail/' + vehicle.inv_id + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">';
+        grid += '<img src="' + thumb + '" alt="' + vehicle.inv_year + ' ' + vehicle.inv_make + ' ' + vehicle.inv_model + ', ' + vehicle.inv_color + '">';
+        grid += '</a>';
+        grid += '<div class="namePrice">';
+        grid += '<hr />';
+        grid += '<h2>' + vehicle.inv_make + ' ' + vehicle.inv_model + '</h2>';
+        grid += '<span>$' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>';
+        grid += '</div>';
+        grid += '</li>';
+      });
+      grid += '</ul>';
+    } else {
+      grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>';
     }
-
-
-    return grid
-
-
-  }
+    return grid;
+}
 
 
 /* ****************************************
