@@ -1,3 +1,8 @@
+/* Utility: High contrast text on accent backgrounds */
+.text-on-accent {
+  color: #fff !important;
+}
+
 /* Responsive Add Classification Form Styles */
 .add-classification-form {
   max-width: 400px;
@@ -470,6 +475,7 @@ select {
 input[type='Submit'] {
   font-size: larger;
   background-color: var(--main-accent);
+  color: #fff;
   margin: .5rem 0 1rem 0;
 }
 
@@ -653,8 +659,8 @@ hr {
   max-width: 25vw;
   max-height: 10vh;
   padding: .5rem;
-  background-color: var(--main-accent);
-  color: var(--primary-text);
+  background-color: #0077a8;
+  color: #fff !important;
   font-weight: 800;
   border-radius: .25rem;
 }
@@ -772,6 +778,7 @@ input[name$='Thumbnail'] {
   background-color: var(--main-accent);
   font-size: larger;
   border-radius: .5rem;
+  color: #fff;
 }
 #loginContainer p{
 text-align: center;
@@ -789,6 +796,7 @@ text-align: center;
   background-color: var(--main-accent);
   font-size: larger;
   border-radius: .5rem;
+  color: #fff;
 }
 
 #registerContainer p{
