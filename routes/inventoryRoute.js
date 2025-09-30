@@ -47,4 +47,4 @@ router.get(
 )
 
 
-module.exports = router;
+module.exports = router; // End of routes/inventoryRoute.js
