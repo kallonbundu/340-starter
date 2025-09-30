@@ -14,11 +14,12 @@ const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
 const utilities = require('./utilities/index')
-const session = require("express-session")
 const pool = require('./database/')
 const bodyParser = require("body-parser")
 
 // server.js
+const session = require("express-session");
+const flash = require('connect-flash');
 app.use(express.static("public"))
 
 /* ***********************
@@ -46,6 +47,7 @@ app.use(session({
   name: 'sessionId',
 }))
 
+app.use(flash());
 
 // Body Parser Middleware
 app.use(bodyParser.json())

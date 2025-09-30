@@ -1,3 +1,218 @@
+/* Responsive Add Classification Form Styles */
+.add-classification-form {
+  max-width: 400px;
+  margin: 2.5rem auto 2rem auto;
+  padding: 2rem 1.5rem;
+  background: #f8fcfd;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(1,176,211,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.add-classification-form h1 {
+  color: #0190b3;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.add-classification-form label {
+  font-weight: 600;
+  color: #0190b3;
+  margin-bottom: 0.3rem;
+  font-size: 1.08rem;
+}
+.add-classification-form input[type="text"] {
+  padding: 0.7rem 1rem;
+  border: 1.5px solid #b2e6f3;
+  border-radius: 6px;
+  font-size: 1.08rem;
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.add-classification-form input[type="text"]:focus {
+  border-color: #01b0d3;
+  box-shadow: 0 0 0 2px #b2e6f3;
+}
+.add-classification-form button {
+  background: linear-gradient(90deg, #01b0d3 60%, #0190b3 100%);
+  color: #fff;
+  border: none;
+  padding: 0.85rem;
+  border-radius: 6px;
+  font-size: 1.08rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(1,176,211,0.08);
+  letter-spacing: 0.5px;
+}
+.add-classification-form button:hover {
+  background: #017c8c;
+  box-shadow: 0 4px 16px rgba(1,176,211,0.13);
+  transform: translateY(-1px) scale(1.01);
+}
+.add-classification-form .error-list {
+  background: #ffeaea;
+  color: #b30000;
+  border-left: 4px solid #ff4d4d;
+  padding: 0.7rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+@media (max-width: 600px) {
+  .add-classification-form {
+    padding: 1rem 0.3rem;
+    border-radius: 7px;
+    gap: 0.7rem;
+  }
+  .add-classification-form h1 {
+    font-size: 1.15rem;
+  }
+  .add-classification-form button {
+    font-size: 1rem;
+    padding: 0.7rem 1rem;
+  }
+}
+/* Responsive Inventory Management Page Styles */
+.inv-management {
+  max-width: 500px;
+  margin: 2.5rem auto 2rem auto;
+  padding: 2rem 1.5rem;
+  background: #f8fcfd;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(1,176,211,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+.inv-management h1 {
+  color: #0190b3;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.inv-management ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.inv-management li {
+  width: 100%;
+  text-align: center;
+}
+.inv-management a {
+  display: inline-block;
+  background: linear-gradient(90deg, #01b0d3 60%, #0190b3 100%);
+  color: #fff;
+  padding: 0.9rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(1,176,211,0.08);
+}
+.inv-management a:hover {
+  background: #017c8c;
+  box-shadow: 0 4px 16px rgba(1,176,211,0.13);
+  transform: translateY(-1px) scale(1.01);
+}
+@media (max-width: 600px) {
+  .inv-management {
+    padding: 1rem 0.3rem;
+    border-radius: 7px;
+    gap: 1rem;
+  }
+  .inv-management h1 {
+    font-size: 1.3rem;
+  }
+  .inv-management a {
+    font-size: 1rem;
+    padding: 0.7rem 1rem;
+  }
+}
+/* Responsive Add Inventory Form Styles */
+.add-inventory-form {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem 1.5rem;
+  background: #f8fcfd;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(1,176,211,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.add-inventory-form label {
+  font-weight: 600;
+  color: #0190b3;
+  margin-bottom: 0.3rem;
+  font-size: 1.08rem;
+}
+.add-inventory-form input,
+.add-inventory-form select,
+.add-inventory-form textarea {
+  padding: 0.7rem 1rem;
+  border: 1.5px solid #b2e6f3;
+  border-radius: 6px;
+  font-size: 1.08rem;
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.add-inventory-form input:focus,
+.add-inventory-form select:focus,
+.add-inventory-form textarea:focus {
+  border-color: #01b0d3;
+  box-shadow: 0 0 0 2px #b2e6f3;
+}
+.add-inventory-form button {
+  background: linear-gradient(90deg, #01b0d3 60%, #0190b3 100%);
+  color: #fff;
+  border: none;
+  padding: 0.95rem;
+  border-radius: 6px;
+  font-size: 1.13rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(1,176,211,0.08);
+  letter-spacing: 0.5px;
+}
+.add-inventory-form button:hover {
+  background: #017c8c;
+  box-shadow: 0 4px 16px rgba(1,176,211,0.13);
+  transform: translateY(-1px) scale(1.01);
+}
+.add-inventory-form .error-list {
+  background: #ffeaea;
+  color: #b30000;
+  border-left: 4px solid #ff4d4d;
+  padding: 0.7rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+.add-inventory-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+@media (max-width: 600px) {
+  .add-inventory-form {
+    padding: 1rem 0.3rem;
+    border-radius: 7px;
+    gap: 0.7rem;
+  }
+  .add-inventory-form label {
+    font-size: 1rem;
+  }
+}
 #region Password Requirements
 .password-requirements {
   font-size: 0.98rem;
