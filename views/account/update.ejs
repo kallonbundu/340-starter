@@ -1,0 +1,70 @@
+<% layout('layouts/layout') -%>
+
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else { %>
+  <h1>Update Account Information</h1>
+<% } %>
+
+<% if (messages) { %>
+  <% messages.forEach( function(message) { %>
+    <div class="notice"><%= message %></div>
+  <% }) %>
+<% } %>
+
+<div class="account-update">
+  <% if (locals.accountData) { %>
+    <!-- Update Account Information Form -->
+    <section class="account-info-form">
+      <h2>Update Account Information</h2>
+      <form action="/account/update-account" method="post">
+        <div class="form-group">
+          <label for="account_firstname">First Name:</label>
+          <input type="text" id="account_firstname" name="account_firstname" 
+                 value="<%= locals.accountData.account_firstname %>" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="account_lastname">Last Name:</label>
+          <input type="text" id="account_lastname" name="account_lastname" 
+                 value="<%= locals.accountData.account_lastname %>" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="account_email">Email:</label>
+          <input type="email" id="account_email" name="account_email" 
+                 value="<%= locals.accountData.account_email %>" required>
+        </div>
+        
+        <input type="hidden" name="account_id" value="<%= locals.accountData.account_id %>">
+        
+        <div class="form-group">
+          <input type="submit" value="Update Account" class="btn-primary">
+        </div>
+      </form>
+    </section>
+
+    <!-- Change Password Form -->
+    <section class="password-form">
+      <h2>Change Password</h2>
+      <form action="/account/update-password" method="post">
+        <div class="form-group">
+          <label for="account_password">New Password:</label>
+          <input type="password" id="account_password" name="account_password" 
+                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$" 
+                 title="Password must be at least 12 characters long and contain at least 1 uppercase, 1 lowercase, 1 number and 1 special character" 
+                 required>
+          <span>Password must be at least 12 characters and contain at least 1 capital letter, 1 number and 1 special character</span>
+        </div>
+        
+        <input type="hidden" name="account_id" value="<%= locals.accountData.account_id %>">
+        
+        <div class="form-group">
+          <input type="submit" value="Change Password" class="btn-primary">
+        </div>
+      </form>
+    </section>
+  <% } else { %>
+    <p>Please <a href="/account/login">log in</a> to update your account.</p>
+  <% } %>
+</div>
