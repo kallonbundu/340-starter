@@ -232,8 +232,16 @@ Util.checkJWTToken = (req, res, next) => {
   }
  }
 
-
-
-
+/* ****************************************
+ *  Check account type authorization
+ * ************************************ */
+Util.checkAccountType = (req, res, next) => {
+  if (res.locals.loggedin && (res.locals.accountData.account_type == "Employee" || res.locals.accountData.account_type == "Admin")) {
+    next()
+  } else {
+    req.flash("notice", "You do not have permission to access this resource.")
+    return res.redirect("/account/login")
+  }
+}
 
 module.exports = Util

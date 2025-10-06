@@ -1,6 +1,13 @@
+/* Global styles for better accessibility */
+body {
+  color: #333;
+  background-color: #fff;
+}
+
 /* Utility: High contrast text on accent backgrounds */
 .text-on-accent {
   color: #fff !important;
+  background-color: var(--main-accent);
 }
 
 /* Responsive Add Classification Form Styles */
@@ -76,8 +83,8 @@
     font-size: 1.15rem;
   }
   .add-classification-form button {
-    font-size: 1rem;
     padding: 0.7rem 1rem;
+    font-size: 1rem;
   }
 }
 /* Responsive Inventory Management Page Styles */
@@ -610,7 +617,7 @@
 }
 
 /* High contrast mode support */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .register-form {
     border: 3px solid var(--main-accent-dark);
   }

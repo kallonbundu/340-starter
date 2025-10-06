@@ -1,15 +1,16 @@
-<% layout('layouts/layout') -%>
-
 <% if (title) { %>
   <h1><%= title %></h1>
 <% } else { %>
   <h1>Update Account Information</h1>
 <% } %>
 
-<% if (messages) { %>
-  <% messages.forEach( function(message) { %>
-    <div class="notice"><%= message %></div>
-  <% }) %>
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
 <% } %>
 
 <div class="account-update">

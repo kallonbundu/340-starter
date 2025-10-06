@@ -1,6 +1,7 @@
 <!-- views/inventory/management.ejs -->
 <div class="inv-management">
   <h1>Inventory Management</h1>
+  <%- messages() %>
   <% if (message) { %>
     <div class="flash-message"><%= message %></div>
   <% } %>
@@ -8,4 +9,78 @@
     <li><a href="/inv/add-classification">Add New Classification</a></li>
     <li><a href="/inv/add-inventory">Add New Inventory Item</a></li>
   </ul>
+  
+  <h2>Manage Existing Inventory</h2>
+  <p>Choose a classification to see its inventory items</p>
+  <select name="classificationList" id="classificationList">
+    <option value="">Choose a Classification</option>
+    <% if (locals.classifications) { %>
+      <% locals.classifications.forEach(function(classification) { %>
+        <option value="<%= classification.classification_id %>">
+          <%= classification.classification_name %>
+        </option>
+      <% }) %>
+    <% } %>
+  </select>
+  
+  <table id="inventoryDisplay" style="display: none;">
+    <thead>
+      <tr>
+        <th>Vehicle Name</th>
+        <th>Modify</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id="inventoryTable">
+    </tbody>
+  </table>
 </div>
+
+<script>
+'use strict'
+ 
+// Get a list of items in inventory based on the classification_id 
+let classificationList = document.querySelector("#classificationList")
+classificationList.addEventListener("change", function () { 
+ let classification_id = classificationList.value 
+ console.log(`classification_id is: ${classification_id}`) 
+ let classIdURL = "/inv/getInventory/"+classification_id 
+ fetch(classIdURL) 
+ .then(function (response) { 
+  if (response.ok) { 
+   return response.json(); 
+  } 
+  throw Error("Network response was not OK"); 
+ }) 
+ .then(function (data) { 
+  console.log(data); 
+  buildInventoryList(data); 
+ }) 
+ .catch(function (error) { 
+  console.log('There was a problem: ', error.message) 
+ }) 
+})
+
+// Build inventory items into HTML table components and inject into DOM 
+function buildInventoryList(data) { 
+ let inventoryDisplay = document.getElementById("inventoryDisplay"); 
+ let dataTable = document.getElementById("inventoryTable"); 
+ // Set up the table labels 
+ dataTable.innerHTML = ""; 
+ // Set up the table body 
+ data.forEach(function (element) { 
+  let tr = document.createElement("tr"); 
+  let td1 = document.createElement("td"); 
+  td1.innerHTML = `<a href='/inv/detail/${element.inv_id}' title='Click to update'>${element.inv_make} ${element.inv_model}</a>`; 
+  let td2 = document.createElement("td"); 
+  td2.innerHTML = `<a href='/inv/edit/${element.inv_id}' title='Click to update'>Modify</a>`; 
+  let td3 = document.createElement("td"); 
+  td3.innerHTML = `<a href='/inv/delete/${element.inv_id}' title='Click to delete'>Delete</a>`; 
+  tr.appendChild(td1); 
+  tr.appendChild(td2); 
+  tr.appendChild(td3); 
+  dataTable.appendChild(tr); 
+ }) 
+ inventoryDisplay.style.display = "block"; 
+}
+</script>

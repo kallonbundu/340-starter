@@ -1,0 +1,75 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else { %>
+  <h1>Delete Vehicle</h1>
+<% } %>
+
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<div class="delete-confirmation">
+  <p><strong>Confirm Vehicle Deletion</strong></p>
+  <p>The following vehicle will be deleted permanently. This action cannot be undone.</p>
+  
+  <div class="vehicle-info">
+    <p><strong>Make:</strong> <%= locals.inv_make %></p>
+    <p><strong>Model:</strong> <%= locals.inv_model %></p>
+    <p><strong>Year:</strong> <%= locals.inv_year %></p>
+    <p><strong>Price:</strong> $<%= new Intl.NumberFormat('en-US').format(locals.inv_price) %></p>
+  </div>
+  
+  <form action="/inv/delete/" method="post">
+    <input type="hidden" name="inv_id" value="<%= locals.inv_id %>">
+    <input type="submit" value="Delete Vehicle" class="delete-btn">
+    <a href="/inv/" class="cancel-btn">Cancel</a>
+  </form>
+</div>
+
+<style>
+.delete-confirmation {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.vehicle-info {
+  background-color: #f5f5f5;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 3px;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.cancel-btn {
+  background-color: #6c757d;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+.cancel-btn:hover {
+  background-color: #5a6268;
+}
+</style>
