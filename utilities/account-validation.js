@@ -5,7 +5,7 @@ const validate = {}
 /*  **********************************
  *  Registration Data Validation Rules
  * ********************************* */
-validate.registationRules = () => {
+validate.registrationRules = () => {
   return [
     // firstname is required and must be string
     body("account_firstname")
@@ -69,4 +69,45 @@ validate.checkRegData = async (req, res, next) => {
   next()
 }
 
-module.exports = validate
+/* **********************************
+ *  Login Data Validation Rules
+ * ********************************* */
+function loginRules() {
+  return [
+    body("account_email")
+      .trim()
+      .isEmail()
+      .withMessage("A valid email is required."),
+    body("account_password")
+      .trim()
+      .isLength({ min: 12 })
+      .withMessage("Password must be at least 12 characters long."),
+  ]
+}
+
+/* ******************************
+ * Check login data and return errors or continue to login
+ * ***************************** */
+async function checkLoginData(req, res, next) {
+  const { account_email } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("account/login", {
+      errors,
+      title: "Login",
+      nav,
+      account_email,
+    })
+    return
+  }
+  next()
+}
+
+module.exports = {
+  registrationRules: validate.registrationRules, // <-- fix typo here
+  checkRegData: validate.checkRegData,
+  loginRules,
+  checkLoginData,
+}

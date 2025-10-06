@@ -16,6 +16,8 @@ const accountRoute = require("./routes/accountRoute")
 const utilities = require('./utilities/index')
 const pool = require('./database/')
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
+app.use(cookieParser())
 
 // server.js
 const session = require("express-session");
@@ -48,6 +50,9 @@ app.use(session({
 }))
 
 app.use(flash());
+app.use(cookieParser())
+
+app.use(utilities.checkJWTToken)
 
 // Body Parser Middleware
 app.use(bodyParser.json())
@@ -59,7 +64,6 @@ app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
-
 
 /* ***********************
  * Routes
