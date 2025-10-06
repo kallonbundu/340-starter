@@ -182,7 +182,7 @@ validate.updatePasswordRules = () => {
  * Check account update data and return errors or continue
  * ***************************** */
 validate.checkUpdateData = async (req, res, next) => {
-  const { account_firstname, account_lastname, account_email, account_id } = req.body
+  const { account_firstname, account_lastname, account_email, account_id } = req.body || {}
   let errors = []
   errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -205,7 +205,7 @@ validate.checkUpdateData = async (req, res, next) => {
  * Check password update data and return errors or continue
  * ***************************** */
 validate.checkPasswordData = async (req, res, next) => {
-  const { account_id } = req.body
+  const { account_id } = req.body || {}
   let errors = []
   errors = validationResult(req)
   if (!errors.isEmpty()) {

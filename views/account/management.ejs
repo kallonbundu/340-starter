@@ -19,10 +19,16 @@
     
     <p><a href="/account/update/<%= locals.accountData.account_id %>">Update Account Information</a></p>
     
+    <!-- Temporary: Show for all users for testing -->
+    <h3>Inventory Management</h3>
+    <p><a href="/inv">Manage Inventory</a></p>
+    
+    <!-- Production code (restore before final submission):
     <% if (locals.accountData.account_type === "Employee" || locals.accountData.account_type === "Admin") { %>
       <h3>Inventory Management</h3>
       <p><a href="/inv">Manage Inventory</a></p>
     <% } %>
+    -->
   <% } else { %>
     <p>Please <a href="/account/login">log in</a> to access your account management.</p>
   <% } %>
