@@ -16,6 +16,7 @@ const accountRoute = require("./routes/accountRoute")
 const utilities = require('./utilities/index')
 const pool = require('./database/')
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 
 // server.js
 const session = require("express-session");
@@ -35,6 +36,9 @@ app.set("layout", "./layouts/layout") // not at views root
  * ************************/
 // Serve static files from public directory
 app.use(express.static("public"))
+
+// Cookie Parser Middleware
+app.use(cookieParser())
 
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
@@ -59,6 +63,9 @@ app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
+
+// JWT Token checking middleware
+app.use(utilities.checkJWTToken)
 
 
 /* ***********************

@@ -359,6 +359,321 @@
   text-decoration: underline;
   font-weight: 600;
 }
+
+/* Responsive Registration Form Styles */
+.register-form {
+  width: 100%;
+  max-width: 32rem;
+  margin: 2rem auto;
+  padding: 2.5rem 2rem;
+  background: #f8fcfd;
+  border-radius: 16px;
+  box-shadow: 0 6px 32px rgba(1,176,211,0.12), 0 2px 8px rgba(36,35,51,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: slideIn 0.8s cubic-bezier(.25,.46,.45,.94);
+}
+
+@keyframes slideIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(40px) scale(0.95); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
+}
+
+.register-form h1 {
+  color: var(--main-accent-dark);
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.register-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.register-form label {
+  font-weight: 700;
+  color: var(--main-accent-dark);
+  font-size: 1.1rem;
+  letter-spacing: 0.3px;
+}
+
+.register-form input[type="text"],
+.register-form input[type="email"],
+.register-form input[type="password"] {
+  padding: 1rem 1.2rem;
+  border: 2px solid #b2e6f3;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  background: #fff;
+  transition: all 0.3s ease;
+  outline: none;
+  font-family: inherit;
+}
+
+.register-form input[type="text"]:focus,
+.register-form input[type="email"]:focus,
+.register-form input[type="password"]:focus {
+  border-color: #01b0d3;
+  box-shadow: 0 0 0 3px rgba(1,176,211,0.15);
+  transform: translateY(-2px);
+}
+
+.register-form input[type="text"]:valid,
+.register-form input[type="email"]:valid,
+.register-form input[type="password"]:valid {
+  border-color: #28a745;
+  background-color: #f8fff9;
+}
+
+.register-form input[type="text"]:invalid:not(:placeholder-shown),
+.register-form input[type="email"]:invalid:not(:placeholder-shown),
+.register-form input[type="password"]:invalid:not(:placeholder-shown) {
+  border-color: #dc3545;
+  background-color: #fff5f5;
+}
+
+.register-form .password-requirements {
+  font-size: 0.95rem;
+  color: var(--main-accent-dark);
+  background: linear-gradient(135deg, #e0f7fa 0%, #f0f9ff 100%);
+  border-left: 4px solid var(--main-accent);
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  margin-top: 0.3rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.register-form button {
+  background: linear-gradient(135deg, var(--main-accent) 0%, var(--main-accent-dark) 100%);
+  color: #fff;
+  border: none;
+  padding: 1.1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0,119,168,0.15);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
+.register-form button:hover {
+  background: linear-gradient(135deg, var(--main-accent-dark) 0%, #004d66 100%);
+  box-shadow: 0 6px 24px rgba(0,119,168,0.25);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.register-form button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 8px rgba(0,119,168,0.2);
+}
+
+.register-form .notice {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeaa7;
+  border-left: 4px solid #f39c12;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.register-form .notice ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  list-style-type: disc;
+}
+
+.register-form .notice li {
+  margin-bottom: 0.3rem;
+  line-height: 1.4;
+}
+
+.register-form .register-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 1.05rem;
+  color: #666;
+}
+
+.register-form .register-link a {
+  color: var(--main-accent-dark);
+  text-decoration: none;
+  font-weight: 700;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.register-form .register-link a:hover {
+  background-color: rgba(1,176,211,0.1);
+  text-decoration: underline;
+}
+
+/* Input placeholder styles for registration form */
+.register-form input::placeholder {
+  color: #999;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+/* Responsive breakpoints for registration form */
+@media (max-width: 768px) {
+  .register-form {
+    max-width: 90vw;
+    padding: 2rem 1.5rem;
+    margin: 1rem auto;
+    border-radius: 12px;
+    gap: 1.2rem;
+  }
+  
+  .register-form h1 {
+    font-size: 1.6rem;
+  }
+  
+  .register-form label {
+    font-size: 1.05rem;
+  }
+  
+  .register-form input[type="text"],
+  .register-form input[type="email"],
+  .register-form input[type="password"] {
+    padding: 0.9rem 1rem;
+    font-size: 1.05rem;
+  }
+  
+  .register-form button {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .register-form .password-requirements {
+    font-size: 0.9rem;
+    padding: 0.7rem 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-form {
+    max-width: 95vw;
+    padding: 1.5rem 1rem;
+    border-radius: 8px;
+    gap: 1rem;
+  }
+  
+  .register-form h1 {
+    font-size: 1.4rem;
+  }
+  
+  .register-form label {
+    font-size: 1rem;
+  }
+  
+  .register-form input[type="text"],
+  .register-form input[type="email"],
+  .register-form input[type="password"] {
+    padding: 0.8rem 0.9rem;
+    font-size: 16px; /* Prevents zoom on mobile */
+    border-radius: 6px;
+  }
+  
+  .register-form button {
+    padding: 0.9rem 1.2rem;
+    font-size: 1.05rem;
+    border-radius: 6px;
+  }
+  
+  .register-form .password-requirements {
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+    line-height: 1.3;
+  }
+  
+  .register-form .register-link {
+    font-size: 0.95rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .register-form {
+    border: 3px solid var(--main-accent-dark);
+  }
+  
+  .register-form input[type="text"],
+  .register-form input[type="email"],
+  .register-form input[type="password"] {
+    border-width: 3px;
+  }
+  
+  .register-form button {
+    border: 2px solid #fff;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .register-form {
+    animation: none;
+  }
+  
+  .register-form input[type="text"]:focus,
+  .register-form input[type="email"]:focus,
+  .register-form input[type="password"]:focus {
+    transform: none;
+  }
+  
+  .register-form button:hover {
+    transform: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .register-form {
+    background: #1a1a1a;
+    box-shadow: 0 6px 32px rgba(0,0,0,0.3);
+  }
+  
+  .register-form h1,
+  .register-form label {
+    color: #e0f7fa;
+  }
+  
+  .register-form input[type="text"],
+  .register-form input[type="email"],
+  .register-form input[type="password"] {
+    background: #2a2a2a;
+    color: #fff;
+    border-color: #444;
+  }
+  
+  .register-form input::placeholder {
+    color: #aaa;
+  }
+  
+  .register-form .password-requirements {
+    background: #2a3f42;
+    color: #b3e5fc;
+    border-left-color: #4fc3f7;
+  }
+}
+
 #endregion
 /************************************************
 CSS Styles for CSE Motors
