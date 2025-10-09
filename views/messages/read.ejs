@@ -1,0 +1,76 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else { %>
+  <h1>Read Message</h1>
+<% } %>
+
+<%- messages() %>
+
+<div class="message-navigation">
+  <a href="/messages/inbox">← Back to Inbox</a>
+  <a href="/messages/compose?replyTo=<%= message.message_id %>" class="btn btn-primary">↩️ Reply</a>
+  <a href="/account/">← Back to Account</a>
+</div>
+
+<% if (message) { %>
+  <div class="message-details">
+    <div class="message-header">
+      <div class="message-meta">
+        <p><strong>From:</strong> <%= message.sender_name %> (<%= message.sender_email %>)</p>
+        <p><strong>To:</strong> <%= message.recipient_name %> (<%= message.recipient_email %>)</p>
+        <p><strong>Date:</strong> <%= new Date(message.message_created).toLocaleString() %></p>
+        <p><strong>Subject:</strong> <%= message.message_subject %></p>
+        <p>
+          <strong>Status:</strong> 
+          <% if (message.message_read) { %>
+            <span class="status-badge read-badge">Read</span>
+          <% } else { %>
+            <span class="status-badge unread-badge">Unread</span>
+          <% } %>
+          <% if (message.message_archived) { %>
+            <span class="status-badge archived-badge">Archived</span>
+          <% } %>
+        </p>
+      </div>
+    </div>
+
+    <div class="message-body">
+      <h3>Message:</h3>
+      <div class="message-content">
+        <%= message.message_body %>
+      </div>
+    </div>
+
+    <div class="message-actions">
+      <a href="/messages/compose?replyTo=<%= message.message_id %>" class="btn btn-primary">↩️ Reply</a>
+      
+      <% if (message.message_to === locals.accountData.account_id) { %>
+        <% if (!message.message_read) { %>
+          <form action="/messages/mark-read/<%= message.message_id %>" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-info">Mark as Read</button>
+          </form>
+        <% } else { %>
+          <form action="/messages/mark-unread/<%= message.message_id %>" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-info">Mark as Unread</button>
+          </form>
+        <% } %>
+        
+        <% if (!message.message_archived) { %>
+          <form action="/messages/archive/<%= message.message_id %>" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-warning">📁 Archive</button>
+          </form>
+        <% } else { %>
+          <form action="/messages/unarchive/<%= message.message_id %>" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-info">Move to Inbox</button>
+          </form>
+        <% } %>
+      <% } %>
+      
+      <form action="/messages/delete/<%= message.message_id %>" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this message?');">
+        <button type="submit" class="btn btn-danger">🗑️ Delete</button>
+      </form>
+    </div>
+  </div>
+<% } else { %>
+  <p>Message not found.</p>
+<% } %>

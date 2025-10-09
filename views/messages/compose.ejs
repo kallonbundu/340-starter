@@ -1,0 +1,84 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else { %>
+  <h1>Compose New Message</h1>
+<% } %>
+
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice error-list">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<div class="message-navigation">
+  <a href="/messages/inbox">← Back to Inbox</a>
+  <a href="/account/">← Back to Account</a>
+</div>
+
+<form action="/messages/send" method="post" class="message-form" id="messageForm">
+  <div class="form-group">
+    <label for="message_to">To: <span class="required">*</span></label>
+    <select name="message_to" id="message_to" required>
+      <option value="">-- Select Recipient --</option>
+      <% if (recipients && recipients.length > 0) { %>
+        <% recipients.forEach(recipient => { %>
+          <option value="<%= recipient.account_id %>" 
+                  <%= locals.message_to == recipient.account_id ? 'selected' : '' %>>
+            <%= recipient.account_name %> (<%= recipient.account_email %>)
+          </option>
+        <% }) %>
+      <% } %>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="message_subject">Subject: <span class="required">*</span></label>
+    <input 
+      type="text" 
+      name="message_subject" 
+      id="message_subject"
+      maxlength="255"
+      value="<%= locals.message_subject || '' %>"
+      required
+      placeholder="Enter message subject">
+  </div>
+
+  <div class="form-group">
+    <label for="message_body">Message: <span class="required">*</span></label>
+    <textarea 
+      name="message_body" 
+      id="message_body"
+      rows="10"
+      required
+      placeholder="Enter your message"><%= locals.message_body || '' %></textarea>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary">📤 Send Message</button>
+    <a href="/messages/inbox" class="btn btn-secondary">Cancel</a>
+  </div>
+</form>
+
+<script>
+  // Client-side validation
+  document.getElementById('messageForm').addEventListener('submit', function(e) {
+    const recipient = document.getElementById('message_to').value;
+    const subject = document.getElementById('message_subject').value.trim();
+    const body = document.getElementById('message_body').value.trim();
+    
+    if (!recipient || !subject || !body) {
+      e.preventDefault();
+      alert('Please fill in all required fields.');
+      return false;
+    }
+    
+    if (subject.length > 255) {
+      e.preventDefault();
+      alert('Subject must be 255 characters or less.');
+      return false;
+    }
+  });
+</script>

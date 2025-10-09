@@ -1,35 +1,201 @@
 <% if (title) { %>
-  <h1><%= title %></h1>
+  <h1 style="display: none;"><%= title %></h1>
 <% } else { %>
-  <h1>Account Management</h1>
+  <h1 style="display: none;">Account Management</h1>
 <% } %>
 
 <%- messages() %>
 <% if (errors) { %>
-  <ul class="notice">
-    <% errors.array().forEach(error => { %>
-      <li><%= error.msg %></li>
-    <% }) %>
-  </ul>
+  <div class="account-management">
+    <ul class="notice">
+      <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  </div>
+<% } %>
+
+<% if (locals.accountData && locals.unreadCount && locals.unreadCount > 0) { %>
+<div class="unread-notification" id="unreadNotification">
+  <div class="unread-notification-content">
+    <div class="unread-notification-message">
+      <span class="unread-notification-icon">📧</span>
+      <p class="unread-notification-text">
+        You have 
+        <span class="unread-notification-count"><%= locals.unreadCount %></span>
+        unread message<%= locals.unreadCount > 1 ? 's' : '' %>
+      </p>
+    </div>
+    <div class="unread-notification-actions">
+      <a href="/messages/inbox" class="btn btn-primary">📥 View Inbox</a>
+      <button class="btn btn-secondary" onclick="markAsAcknowledged()">Mark as Seen</button>
+      <button class="dismiss-btn" onclick="dismissNotification()" title="Dismiss">×</button>
+    </div>
+  </div>
+</div>
 <% } %>
 
 <div class="account-management">
   <% if (locals.accountData) { %>
-    <h2>Welcome <%= locals.accountData.account_firstname %></h2>
-    
-    <p><a href="/account/update/<%= locals.accountData.account_id %>">Update Account Information</a></p>
-    
-    <!-- Temporary: Show for all users for testing -->
-    <h3>Inventory Management</h3>
-    <p><a href="/inv">Manage Inventory</a></p>
-    
-    <!-- Production code (restore before final submission):
-    <% if (locals.accountData.account_type === "Employee" || locals.accountData.account_type === "Admin") { %>
+    <div class="account-management-header">
+      <h2>Welcome back, <%= locals.accountData.account_firstname %></h2>
+      <p class="user-subtitle">Manage your account and access your tools</p>
+    </div>
+
+    <div class="account-management-content">
+      <p><a href="/account/update/<%= locals.accountData.account_id %>">Update Account Information</a></p>
+      
+      <!-- Animated Messages Card -->
+      <div class="messages-card">
+        <div class="messages-card-header">
+          <h3 class="messages-card-title">Messages</h3>
+          <p class="messages-card-subtitle">Manage your communications</p>
+        </div>
+        
+        <ul class="messages-list">
+          <li class="message-item">
+            <a href="/messages/inbox" class="message-link">
+              <span class="message-icon">📥</span>
+              <span class="message-text">Inbox</span>
+              <% if (locals.unreadCount && locals.unreadCount > 0) { %>
+                <span class="message-badge"><%= locals.unreadCount %></span>
+              <% } %>
+              <span class="message-arrow">→</span>
+            </a>
+          </li>
+          
+          <li class="message-item">
+            <a href="/messages/compose" class="message-link">
+              <span class="message-icon">✉️</span>
+              <span class="message-text">Compose New Message</span>
+              <span class="message-arrow">→</span>
+            </a>
+          </li>
+          
+          <li class="message-item">
+            <a href="/messages/sent" class="message-link">
+              <span class="message-icon">📤</span>
+              <span class="message-text">Sent Messages</span>
+              <span class="message-arrow">→</span>
+            </a>
+          </li>
+          
+          <li class="message-item">
+            <a href="/messages/archived" class="message-link">
+              <span class="message-icon">📁</span>
+              <span class="message-text">Archived Messages</span>
+              <% if (locals.archivedCount && locals.archivedCount > 0) { %>
+                <span class="message-badge"><%= locals.archivedCount %></span>
+              <% } %>
+              <span class="message-arrow">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Temporary: Show for all users for testing -->
       <h3>Inventory Management</h3>
-      <p><a href="/inv">Manage Inventory</a></p>
-    <% } %>
-    -->
+      <div class="message-links">
+        <p><a href="/inv">🏢 Manage Inventory</a></p>
+      </div>
+      
+      <!-- Production code (restore before final submission):
+      <% if (locals.accountData.account_type === "Employee" || locals.accountData.account_type === "Admin") { %>
+        <h3>Inventory Management</h3>
+        <div class="message-links">
+          <p><a href="/inv">🏢 Manage Inventory</a></p>
+        </div>
+      <% } %>
+      -->
+    </div>
   <% } else { %>
-    <p>Please <a href="/account/login">log in</a> to access your account management.</p>
+    <div class="account-management-content">
+      <p>Please <a href="/account/login">log in</a> to access your account management.</p>
+    </div>
   <% } %>
 </div>
+
+<% if (locals.accountData && locals.unreadCount && locals.unreadCount > 0) { %>
+<script>
+// Unread messages notification functionality
+function dismissNotification() {
+  const notification = document.getElementById('unreadNotification');
+  if (notification) {
+    notification.style.animation = 'slideOutUp 0.3s ease-in forwards';
+    setTimeout(() => {
+      notification.style.display = 'none';
+    }, 300);
+    
+    // Store dismissal in localStorage to prevent showing again this session
+    localStorage.setItem('unreadNotificationDismissed', 'true');
+  }
+}
+
+function markAsAcknowledged() {
+  const notification = document.getElementById('unreadNotification');
+  if (notification) {
+    // Change notification appearance to show it's been acknowledged
+    notification.style.opacity = '0.6';
+    notification.querySelector('.unread-notification-text').innerHTML = 
+      'Messages acknowledged - click "View Inbox" to read them';
+    
+    // Hide the "Mark as Seen" button
+    const markSeenBtn = notification.querySelector('.btn-secondary');
+    if (markSeenBtn) {
+      markSeenBtn.style.display = 'none';
+    }
+    
+    // Store acknowledgment in localStorage
+    localStorage.setItem('unreadNotificationAcknowledged', 'true');
+  }
+}
+
+// Check if notification was previously dismissed this session
+if (localStorage.getItem('unreadNotificationDismissed') === 'true') {
+  const notification = document.getElementById('unreadNotification');
+  if (notification) {
+    notification.style.display = 'none';
+  }
+}
+
+// Check if notification was previously acknowledged
+if (localStorage.getItem('unreadNotificationAcknowledged') === 'true') {
+  markAsAcknowledged();
+}
+
+// Add slideOutUp animation for dismiss
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes slideOutUp {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+`;
+document.head.appendChild(style);
+
+// Auto-dismiss notification after 30 seconds if not interacted with
+let autoDismissTimer = setTimeout(() => {
+  if (!localStorage.getItem('unreadNotificationDismissed') && 
+      !localStorage.getItem('unreadNotificationAcknowledged')) {
+    dismissNotification();
+  }
+}, 30000);
+
+// Clear auto-dismiss if user interacts with the notification
+document.getElementById('unreadNotification')?.addEventListener('click', () => {
+  clearTimeout(autoDismissTimer);
+});
+
+// Clear localStorage when user actually visits inbox (to show notification again for new messages)
+if (window.location.pathname === '/messages/inbox') {
+  localStorage.removeItem('unreadNotificationDismissed');
+  localStorage.removeItem('unreadNotificationAcknowledged');
+}
+</script>
+<% } %>

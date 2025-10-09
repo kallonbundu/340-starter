@@ -1,4 +1,3 @@
-
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
 
@@ -297,6 +296,23 @@ invCont.deleteInventory = async function (req, res, next) {
  * ************************************ */
 invCont.throwError = async function (req, res) {
   throw new Error("I am an intentional error")
+}
+
+/* ***************************
+ *  Build inventory item detail view
+ * ************************** */
+invCont.buildByInventoryId = async function (req, res, next) {
+  const inv_id = req.params.inv_id
+  const data = await invModel.getInventoryByInventoryId(inv_id)
+  
+  const grid = await utilities.buildSingleVehicleDisplay(data) // Make sure this matches the function name in utilities
+  let nav = await utilities.getNav()
+  const className = data.inv_make + " " + data.inv_model
+  res.render("./inventory/detail", {
+    title: className,
+    nav,
+    grid,
+  })
 }
 
 
