@@ -1,7 +1,23 @@
 /* Global styles for better accessibility */
+* {
+  /* Ensure all elements inherit proper colors */
+  box-sizing: inherit;
+}
+
 body {
   color: #333;
   background-color: #fff;
+}
+
+/* Universal color inheritance for better contrast */
+h1, h2, h3, h4, h5, h6 {
+  color: inherit;
+  background-color: transparent;
+}
+
+p, span, div {
+  color: inherit;
+  background-color: transparent;
 }
 
 /* Utility: High contrast text on accent backgrounds */
@@ -24,6 +40,7 @@ body {
 }
 .add-classification-form h1 {
   color: var(--main-accent-dark);
+  background-color: transparent;
   font-size: 1.6rem;
   margin-bottom: 0.5rem;
   text-align: center;
@@ -31,6 +48,7 @@ body {
 .add-classification-form label {
   font-weight: 600;
   color: var(--main-accent-dark);
+  background-color: transparent;
   margin-bottom: 0.3rem;
   font-size: 1.08rem;
 }
@@ -40,6 +58,7 @@ body {
   border-radius: 6px;
   font-size: 1.08rem;
   background: #fff;
+  color: #333;
   transition: border-color 0.2s, box-shadow 0.2s;
   outline: none;
 }
@@ -93,6 +112,7 @@ body {
   margin: 2.5rem auto 2rem auto;
   padding: 2rem 1.5rem;
   background: #f8fcfd;
+  color: #333;
   border-radius: 12px;
   box-shadow: 0 2px 16px rgba(1,176,211,0.08);
   display: flex;
@@ -102,6 +122,7 @@ body {
 }
 .inv-management h1 {
   color: #0190b3;
+  background-color: transparent;
   font-size: 2rem;
   margin-bottom: 0.5rem;
   text-align: center;
@@ -133,6 +154,7 @@ body {
 }
 .inv-management a:hover {
   background: #017c8c;
+  color: #fff;
   box-shadow: 0 4px 16px rgba(1,176,211,0.13);
   transform: translateY(-1px) scale(1.01);
 }
@@ -1595,7 +1617,7 @@ text-align: center;
 }
 
 /* High contrast and accessibility */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .message-table tbody tr:hover {
     background-color: rgba(1,176,211,0.15);
   }
@@ -1945,7 +1967,7 @@ text-align: center;
 }
 
 /* High contrast mode support */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .message-form {
     border: 3px solid var(--main-accent-dark);
     box-shadow: none;
@@ -2432,7 +2454,7 @@ text-align: center;
 }
 
 /* High contrast mode support */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .account-management {
     border: 3px solid var(--main-accent-dark);
     box-shadow: none;
@@ -2704,7 +2726,7 @@ text-align: center;
 }
 
 /* High contrast mode support */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .unread-notification {
     border-width: 2px;
     border-left-width: 6px;
@@ -3172,7 +3194,7 @@ text-align: center;
 }
 
 /* High contrast mode support */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .messages-card {
     border: 3px solid var(--main-accent-dark);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
