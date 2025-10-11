@@ -151,8 +151,6 @@ messageController.sendMessage = async function (req, res, next) {
     const { message_to, message_subject, message_body } = req.body
     const message_from = res.locals.accountData.account_id
     
-    console.log(`Sending message: from=${message_from}, to=${message_to}, subject=${message_subject}`)
-    
     const result = await messageModel.sendMessage(
       message_from,
       message_to,

@@ -72,7 +72,6 @@ async function getSentMessages(account_id) {
                  WHERE m.message_from = $1
                  ORDER BY m.message_created DESC`
     const result = await pool.query(sql, [account_id])
-    console.log(`getSentMessages for account ${account_id}: found ${result.rows.length} messages`)
     return result.rows
   } catch (error) {
     console.error("getSentMessages error:", error)
@@ -251,9 +250,7 @@ async function getSentCount(account_id) {
                  FROM message 
                  WHERE message_from = $1`
     const result = await pool.query(sql, [account_id])
-    const count = parseInt(result.rows[0].count)
-    console.log(`getSentCount for account ${account_id}: ${count} sent messages`)
-    return count
+    return parseInt(result.rows[0].count)
   } catch (error) {
     console.error("getSentCount error:", error)
     return 0
