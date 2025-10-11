@@ -39,7 +39,7 @@ validate.messageRules = () => {
  * Check data and return errors or continue to send message
  * ***************************** */
 validate.checkMessageData = async (req, res, next) => {
-  const { message_to, message_subject, message_body } = req.body
+  const { message_to, message_subject, message_body } = req.body || {}
   let errors = []
   errors = validationResult(req)
   if (!errors.isEmpty()) {

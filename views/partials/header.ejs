@@ -4,6 +4,21 @@
     </span>
     <div id="tools">
       <% if (locals.loggedin) { %>
+        <!-- Message Notification Bell -->
+        <div class="message-notification-wrapper">
+          <a href="/messages/inbox" class="message-notification-bell" title="View messages">
+            <span class="bell-icon">🔔</span>
+            <% if (locals.unreadMessageCount && locals.unreadMessageCount > 0) { %>
+              <span class="notification-badge"><%= locals.unreadMessageCount %></span>
+            <% } %>
+          </a>
+          <% if (locals.unreadMessageCount && locals.unreadMessageCount > 0) { %>
+            <div class="unread-message-tooltip">
+              You have <%= locals.unreadMessageCount %> unread message<%= locals.unreadMessageCount !== 1 ? 's' : '' %>
+            </div>
+          <% } %>
+        </div>
+        
         <a title="Click to access account management" href="/account/">Welcome <%= locals.accountData.account_firstname %></a>
         <a title="Click to log out" href="/account/logout">Logout</a>
       <% } else { %>

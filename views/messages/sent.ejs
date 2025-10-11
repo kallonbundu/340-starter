@@ -7,9 +7,19 @@
 <%- messages() %>
 
 <div class="message-navigation">
-  <a href="/messages/inbox">📥 Back to Inbox</a>
+  <a href="/messages/inbox">
+    📥 Inbox
+    <% if (inboxCount > 0) { %>
+      (<%= inboxCount %>)
+    <% } %>
+  </a>
   <a href="/messages/compose" class="btn btn-primary">✉️ Compose New Message</a>
-  <a href="/messages/archived">📁 Archived Messages</a>
+  <a href="/messages/archived">
+    📁 Archived Messages
+    <% if (archivedCount > 0) { %>
+      (<%= archivedCount %>)
+    <% } %>
+  </a>
   <a href="/account/">← Back to Account</a>
 </div>
 

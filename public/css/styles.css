@@ -3740,3 +3740,271 @@ text-align: center;
 
   /*#endregion*/
 }
+
+/************************************************
+   2.13 Message Notification System
+************************************************/
+/*#region*/
+
+/* Message notification wrapper */
+.message-notification-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+/* Notification bell */
+.message-notification-bell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.message-notification-bell:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.bell-icon {
+  font-size: 18px;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+}
+
+/* Notification badge */
+.notification-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
+  animation: pulseNotification 2s infinite;
+  border: 2px solid white;
+}
+
+@keyframes pulseNotification {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
+  }
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 4px 16px rgba(220, 38, 38, 0.6);
+  }
+}
+
+/* Unread message tooltip */
+.unread-message-tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.unread-message-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-bottom-color: rgba(0, 0, 0, 0.9);
+}
+
+.message-notification-wrapper:hover .unread-message-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(2px);
+}
+
+/* Login notification popup */
+.login-notification {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.3);
+  z-index: 1001;
+  animation: slideInNotification 0.5s ease-out;
+  max-width: 320px;
+  font-weight: 500;
+}
+
+.login-notification .notification-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.login-notification .notification-icon {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.login-notification .notification-title {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.login-notification .notification-message {
+  font-size: 13px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.login-notification .notification-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.login-notification .btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.login-notification .btn-primary {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.login-notification .btn-primary:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.login-notification .btn-secondary {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.login-notification .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.login-notification .close-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.login-notification .close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+@keyframes slideInNotification {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .message-notification-wrapper {
+    margin-right: 0.5rem;
+  }
+  
+  .message-notification-bell {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .bell-icon {
+    font-size: 16px;
+  }
+  
+  .notification-badge {
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    top: -1px;
+    right: -1px;
+  }
+  
+  .unread-message-tooltip {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+  
+  .login-notification {
+    top: 60px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .message-notification-bell {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .bell-icon {
+    font-size: 14px;
+  }
+  
+  .notification-badge {
+    width: 16px;
+    height: 16px;
+    font-size: 9px;
+  }
+}
+
+/*#endregion*/

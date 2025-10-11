@@ -103,6 +103,10 @@ async function accountLogin(req, res) {
      } else {
        res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
      }
+   
+   // Set session flag to show login notification on next page load
+   req.session.justLoggedIn = true
+   
    return res.redirect("/account/")
    }
   } catch (error) {
@@ -115,10 +119,47 @@ async function accountLogin(req, res) {
 **************************************** */
 async function buildAccountManagement(req, res, next) {
   let nav = await utilities.getNav()
+  
+  // Get message counts for logged-in user
+  let unreadMessageCount = 0
+  let inboxCount = 0
+  let sentCount = 0
+  let archivedCount = 0
+  
+  if (res.locals.loggedin && res.locals.accountData) {
+    try {
+      const account_id = res.locals.accountData.account_id
+      unreadMessageCount = await messageModel.getUnreadCount(account_id)
+      inboxCount = await messageModel.getInboxCount(account_id)
+      sentCount = await messageModel.getSentCount(account_id)
+      archivedCount = await messageModel.getArchivedCount(account_id)
+      
+      // Debug logging to help troubleshoot
+      console.log(`Account ${account_id} message counts: unread=${unreadMessageCount}, inbox=${inboxCount}, sent=${sentCount}, archived=${archivedCount}`)
+    } catch (error) {
+      console.error('Error getting message counts:', error)
+      unreadMessageCount = 0
+      inboxCount = 0
+      sentCount = 0
+      archivedCount = 0
+    }
+  }
+  
+  // Check if user just logged in
+  const justLoggedIn = req.session.justLoggedIn || false
+  if (req.session.justLoggedIn) {
+    delete req.session.justLoggedIn // Clear the flag
+  }
+  
   res.render("account/management", {
     title: "Account Management",
     nav,
     errors: null,
+    unreadMessageCount,
+    inboxCount,
+    sentCount,
+    archivedCount,
+    justLoggedIn,
   })
 }
 

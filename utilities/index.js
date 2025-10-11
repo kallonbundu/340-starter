@@ -160,4 +160,29 @@ Util.buildClassificationList = async function (classification_id = null) {
   return classificationList
 }
 
+/* ****************************************
+* Middleware to add unread message count to res.locals
+**************************************** */
+Util.addMessageCount = async function (req, res, next) {
+  if (res.locals.loggedin && res.locals.accountData) {
+    try {
+      const messageModel = require("../models/message-model")
+      const unreadCount = await messageModel.getUnreadCount(res.locals.accountData.account_id)
+      res.locals.unreadMessageCount = unreadCount
+      
+      // Set session flag for login notification if user just logged in
+      if (req.session.justLoggedIn) {
+        res.locals.justLoggedIn = true
+        delete req.session.justLoggedIn
+      }
+    } catch (error) {
+      console.error('Error getting message count:', error)
+      res.locals.unreadMessageCount = 0
+    }
+  } else {
+    res.locals.unreadMessageCount = 0
+  }
+  next()
+}
+
 module.exports = Util

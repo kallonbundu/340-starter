@@ -11,15 +11,18 @@ messageController.buildInbox = async function (req, res, next) {
     const account_id = res.locals.accountData.account_id
     const messages = await messageModel.getInboxMessages(account_id)
     const unreadCount = await messageModel.getUnreadCount(account_id)
+    const inboxCount = await messageModel.getInboxCount(account_id)
+    const sentCount = await messageModel.getSentCount(account_id)
     const archivedCount = await messageModel.getArchivedCount(account_id)
     
     let nav = await utilities.getNav()
     res.render("messages/inbox", {
       title: "Inbox",
       nav,
-      messages: res.locals.messages, // Add this line
       messageList: messages,
       unreadCount,
+      inboxCount,
+      sentCount,
       archivedCount,
       errors: null,
     })
@@ -38,15 +41,18 @@ messageController.buildArchived = async function (req, res, next) {
     const account_id = res.locals.accountData.account_id
     const messages = await messageModel.getArchivedMessages(account_id)
     const unreadCount = await messageModel.getUnreadCount(account_id)
+    const inboxCount = await messageModel.getInboxCount(account_id)
+    const sentCount = await messageModel.getSentCount(account_id)
     const archivedCount = await messageModel.getArchivedCount(account_id)
     
     let nav = await utilities.getNav()
     res.render("messages/archived", {
       title: "Archived Messages",
       nav,
-      messages: res.locals.messages, // Add this line
       messageList: messages,
       unreadCount,
+      inboxCount,
+      sentCount,
       archivedCount,
       errors: null,
     })
@@ -65,14 +71,19 @@ messageController.buildSent = async function (req, res, next) {
     const account_id = res.locals.accountData.account_id
     const messages = await messageModel.getSentMessages(account_id)
     const unreadCount = await messageModel.getUnreadCount(account_id)
+    const inboxCount = await messageModel.getInboxCount(account_id)
+    const sentCount = await messageModel.getSentCount(account_id)
+    const archivedCount = await messageModel.getArchivedCount(account_id)
     
     let nav = await utilities.getNav()
     res.render("messages/sent", {
       title: "Sent Messages",
       nav,
-      messages: res.locals.messages, // Add this line
       messageList: messages,
       unreadCount,
+      inboxCount,
+      sentCount,
+      archivedCount,
       errors: null,
     })
   } catch (error) {
@@ -90,6 +101,9 @@ messageController.buildCompose = async function (req, res, next) {
     const account_id = res.locals.accountData.account_id
     const recipients = await messageModel.getAvailableRecipients(account_id)
     const unreadCount = await messageModel.getUnreadCount(account_id)
+    const inboxCount = await messageModel.getInboxCount(account_id)
+    const sentCount = await messageModel.getSentCount(account_id)
+    const archivedCount = await messageModel.getArchivedCount(account_id)
     
     // Check if replying to a message
     const replyTo = req.query.replyTo
@@ -114,6 +128,9 @@ messageController.buildCompose = async function (req, res, next) {
       nav,
       recipients,
       unreadCount,
+      inboxCount,
+      sentCount,
+      archivedCount,
       message_to,
       message_subject,
       message_body,
@@ -134,9 +151,11 @@ messageController.sendMessage = async function (req, res, next) {
     const { message_to, message_subject, message_body } = req.body
     const message_from = res.locals.accountData.account_id
     
+    console.log(`Sending message: from=${message_from}, to=${message_to}, subject=${message_subject}`)
+    
     const result = await messageModel.sendMessage(
-      message_to,
       message_from,
+      message_to,
       message_subject,
       message_body
     )
@@ -177,6 +196,9 @@ messageController.readMessage = async function (req, res, next) {
     }
     
     const unreadCount = await messageModel.getUnreadCount(account_id)
+    const inboxCount = await messageModel.getInboxCount(account_id)
+    const sentCount = await messageModel.getSentCount(account_id)
+    const archivedCount = await messageModel.getArchivedCount(account_id)
     let nav = await utilities.getNav()
     
     res.render("messages/read", {
@@ -184,6 +206,9 @@ messageController.readMessage = async function (req, res, next) {
       nav,
       message,
       unreadCount,
+      inboxCount,
+      sentCount,
+      archivedCount,
       errors: null,
     })
   } catch (error) {

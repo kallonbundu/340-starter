@@ -8,18 +8,23 @@
 
 <div class="message-navigation">
   <a href="/messages/compose" class="btn btn-primary">✉️ Compose New Message</a>
-  <a href="/messages/sent">📤 Sent Messages</a>
+  <a href="/messages/sent">
+    📤 Sent Messages
+    <% if (sentCount > 0) { %>
+      (<%= sentCount %>)
+    <% } %>
+  </a>
   <a href="/messages/archived">
     📁 Archived Messages
     <% if (archivedCount > 0) { %>
-      <span class="badge">(<%= archivedCount %>)</span>
+      (<%= archivedCount %>)
     <% } %>
   </a>
   <a href="/account/">← Back to Account</a>
 </div>
 
 <div class="message-list">
-  <% if (messages && messages.length > 0) { %>
+  <% if (messageList && messageList.length > 0) { %>
     <table class="message-table">
       <thead>
         <tr>

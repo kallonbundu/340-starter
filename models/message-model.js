@@ -72,6 +72,7 @@ async function getSentMessages(account_id) {
                  WHERE m.message_from = $1
                  ORDER BY m.message_created DESC`
     const result = await pool.query(sql, [account_id])
+    console.log(`getSentMessages for account ${account_id}: found ${result.rows.length} messages`)
     return result.rows
   } catch (error) {
     console.error("getSentMessages error:", error)
@@ -225,6 +226,41 @@ async function getArchivedCount(account_id) {
 }
 
 /* ***************************
+ *  Get total inbox message count for a user (including read messages)
+ * ************************** */
+async function getInboxCount(account_id) {
+  try {
+    const sql = `SELECT COUNT(*) as count 
+                 FROM message 
+                 WHERE message_to = $1 
+                 AND message_archived = false`
+    const result = await pool.query(sql, [account_id])
+    return parseInt(result.rows[0].count)
+  } catch (error) {
+    console.error("getInboxCount error:", error)
+    return 0
+  }
+}
+
+/* ***************************
+ *  Get sent message count for a user
+ * ************************** */
+async function getSentCount(account_id) {
+  try {
+    const sql = `SELECT COUNT(*) as count 
+                 FROM message 
+                 WHERE message_from = $1`
+    const result = await pool.query(sql, [account_id])
+    const count = parseInt(result.rows[0].count)
+    console.log(`getSentCount for account ${account_id}: ${count} sent messages`)
+    return count
+  } catch (error) {
+    console.error("getSentCount error:", error)
+    return 0
+  }
+}
+
+/* ***************************
  *  Get all registered users except current user (for recipient selection)
  * ************************** */
 async function getAvailableRecipients(current_account_id) {
@@ -257,5 +293,7 @@ module.exports = {
   deleteMessage,
   getUnreadCount,
   getArchivedCount,
+  getInboxCount,
+  getSentCount,
   getAvailableRecipients
 }
